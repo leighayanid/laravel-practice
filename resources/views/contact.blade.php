@@ -1,3 +1,3 @@
 <div class="container">
-	Contact Page
+	Contact Page {{ $email }}
 </div>
