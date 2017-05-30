@@ -11,13 +11,16 @@ class PagesController extends Controller
 
 		public function contact(){
 			$email = 'leighdinaya04@gmail.com';
-			return view('contact', compact('email'));
+			$contactNumber = ['09276137537', '0923293923', '09323234356'];
+			return view('contact', compact('email', 'contactNumber'));
 		}
 
 		public function about(){
 			$name = 'Leigh Dinaya';
 			$address = 'Capitangan Abucay, Bataan';
 			$age = 24;
-			return view('about', compact('name', 'address', 'age'));
+			$school = 'Bataan Peninsula State University.';
+			$isStudent = false;
+			return view('about', compact('name', 'address', 'age','isStudent', 'school'));
 		}
 }
