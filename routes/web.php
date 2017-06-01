@@ -23,3 +23,4 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
 
 Route::resource('blogs', 'BlogsController');
+Route::resource('schools', 'SchoolController');
