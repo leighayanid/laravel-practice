@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
+use App\School;
 use Illuminate\Http\Request;
 
-class BlogsController extends Controller
+class SchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class BlogsController extends Controller
     public function index()
     {
         //
-        $blogs = Blog::latest()->get();
-        return view('blogs.index')->with('blogs', $blogs);
+        $schools = School::all();
+        return view('schools.index')->with('schools', $schools);
     }
 
     /**
@@ -43,23 +43,22 @@ class BlogsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(School $school)
     {
-        //
-        $blog = Blog::findOrFail($id);
-        return view('blogs.show')->with('blog', $blog);
+        $school = School::findOrFail($school->id);
+        return view('schools.show')->with('school', $school);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(School $school)
     {
         //
     }
@@ -68,10 +67,10 @@ class BlogsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, School $school)
     {
         //
     }
@@ -79,10 +78,10 @@ class BlogsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(School $school)
     {
         //
     }
