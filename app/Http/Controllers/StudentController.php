@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Student;
-use Illuminate\Http\Request;
+use Request;
+use App\Http\Requests\StudentRequest;
 
 class StudentController extends Controller
 {
@@ -26,7 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -35,9 +36,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        $input = Request::all();
+        Student::create($input);
+        return redirect('students');
     }
 
     /**
