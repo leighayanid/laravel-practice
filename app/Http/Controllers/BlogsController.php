@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
-use Illuminate\Http\Request;
+use Request;
+
+use App\Http\Requests\BlogRequest;
 
 class BlogsController extends Controller
 {
@@ -36,9 +38,11 @@ class BlogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        //
+        $input = Request::all();
+        Blog::create($input);
+        return redirect('blogs');
     }
 
     /**

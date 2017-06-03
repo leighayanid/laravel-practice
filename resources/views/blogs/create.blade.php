@@ -9,7 +9,7 @@
 						<h4>Create a new blog</h4>
 					</div>
 					<div class="panel-body">
-						{!! Form::open() !!}
+						{!! Form::open(['url' => 'blogs']) !!}
 							<div class="form-group">
 								{!! Form::label('title', 'Title of your blog') !!}
 								{!! Form::text('title', null, ['class'=> 'form-control']) !!}
