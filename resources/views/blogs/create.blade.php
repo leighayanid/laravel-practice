@@ -16,7 +16,7 @@
 							</div>
 							<div class="form-group">
 								{!! Form::label('content', 'Type your content here..') !!}
-								{!! Form::text('content', null, ['class'=> 'form-control', 'rows' => '10']) !!}
+								{!! Form::textarea('content', null, ['class'=> 'form-control', 'rows' => 10]) !!}
 							</div>
 							<div class="form-group">
 								{!! Form::submit('Add Blog', ['class' => 'btn btn-default']) !!}

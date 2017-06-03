@@ -53,6 +53,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ route('blogs.index') }}">Blogs</a></li>
+                            <li><a href="{{ route('students.index') }}">Students</a></li>
+                            <li><a href="{{ route('schools.index') }}">Schools</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->email }} <span class="caret"></span>
