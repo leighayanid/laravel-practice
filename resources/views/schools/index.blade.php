@@ -3,6 +3,9 @@
 @section('content')
 	<div class="container">
 		<div class="row">
+			<div class="page-header">
+				<a href="{{ route('schools.create') }}" class="btn btn-default">Create a new school record</a>
+			</div>
 			<div class="col-md-6">
 				<div class="list-group">
 					@foreach($schools as $school)

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\School;
-use Illuminate\Http\Request;
+use Request;
+use App\Http\Requests\SchoolRequest;
 
 class SchoolController extends Controller
 {
@@ -26,7 +27,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        //
+        return view('schools.create');
     }
 
     /**
@@ -35,9 +36,11 @@ class SchoolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SchoolRequest $request)
     {
-        //
+        $input = Request::all();
+        School::create($input);
+        return redirect('schools');
     }
 
     /**
