@@ -9,7 +9,7 @@
 						<h4>Edit student record</h4>
 					</div>
 					<div class="panel-body">
-						{!! Form::open($student, ['method' => 'PATCH', action' => ['StudentController@update', $student->id]]) !!}
+						{!! Form::model($student, ['method' => 'PATCH', 'action' => ['StudentController@update', $student->id]]) !!}
 							<div class="form-group">
 								{!! Form::label('full_name', 'Full name') !!}
 								{!! Form::text('full_name', null, ['class' => 'form-control']) !!}
