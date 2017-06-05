@@ -8,6 +8,11 @@ use App\Http\Requests\SchoolRequest;
 
 class SchoolController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['create', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,9 +66,11 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function edit(School $school)
+    public function edit($id)
     {
         //
+        $school = School::findOrFail($id);
+        return view('schools.edit')->with('school', $school);
     }
 
     /**
@@ -73,9 +80,11 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(SchoolRequest $request, $id)
     {
-        //
+        $school = School::findOrFail($id);
+        $school->update($request->all());
+        return redirect('schools');
     }
 
     /**
