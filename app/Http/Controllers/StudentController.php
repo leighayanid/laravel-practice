@@ -62,9 +62,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('students.edit')->with('student', $student);
     }
 
     /**
@@ -74,9 +75,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $student->update($request->all());
+        return redirect('students');
     }
 
     /**
