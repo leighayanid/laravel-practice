@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Student;
-use Illuminate\Http\Request;
+use Request;
+use App\Http\Requests\StudentRequest;
 
 class StudentController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['create', 'store']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -35,9 +40,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        $input = Request::all();
+        Student::create($input);
+        return redirect('students');
     }
 
     /**
@@ -59,9 +66,10 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('students.edit')->with('student', $student);
     }
 
     /**
@@ -71,9 +79,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $student->update($request->all());
+        return redirect('students');
     }
 
     /**

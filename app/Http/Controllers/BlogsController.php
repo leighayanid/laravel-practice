@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
-use Illuminate\Http\Request;
+use Request;
+
+use App\Http\Requests\BlogRequest;
 
 class BlogsController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['create', 'store']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +34,7 @@ class BlogsController extends Controller
     public function create()
     {
         //
+        return view('blogs.create');
     }
 
     /**
@@ -35,9 +43,11 @@ class BlogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
-        //
+        $input = Request::all();
+        Blog::create($input);
+        return redirect('blogs');
     }
 
     /**
@@ -61,7 +71,8 @@ class BlogsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return view('blogs.edit')->with('blog', $blog);
     }
 
     /**
@@ -71,9 +82,11 @@ class BlogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogRequest $request, $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        $blog->update($request->all());
+        return redirect('blogs');
     }
 
     /**
