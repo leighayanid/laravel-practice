@@ -93,8 +93,9 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy($id)
     {
-        //
+        School::destroy($id);
+        return redirect('schools');
     }
 }
